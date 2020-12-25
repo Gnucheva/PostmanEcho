@@ -4,6 +4,7 @@
   "default": [],
   "items": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "id",
       "name",
@@ -11,7 +12,6 @@
       "balance",
       "currency"
     ],
-    "additionalProperties": false,
     "properties": {
       "id": {
         "type": "integer"
