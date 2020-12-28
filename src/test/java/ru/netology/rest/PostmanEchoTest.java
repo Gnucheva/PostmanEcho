@@ -8,7 +8,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 public class PostmanEchoTest {
     @Test
-    void shouldPostToPostman(){
+    void shouldPostToPostman() {
         given()
                 .baseUri("https://postman-echo.com")
                 .body("some data") // отправляемые данные (заголовки и query можно выставлять аналогично)
@@ -22,4 +22,31 @@ public class PostmanEchoTest {
                 .body("data", equalTo("some data"))
         ;
     }
+
+    @Test
+    void shouldReturnCurrency() {
+        given()
+                .baseUri("https://postman-echo.com")
+                .body("currency:RUB")
+                .when()
+                .post("/post")
+                .then()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .body("data", equalTo("currency:RUB"));
+    }
+
+    @Test
+    void shouldReturnId() {
+        given()
+                .baseUri("https://postman-echo.com")
+                .body("id:3")
+                .when()
+                .post("/post")
+                .then()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .body("data", equalTo("id:3"));
+    }
+
 }
